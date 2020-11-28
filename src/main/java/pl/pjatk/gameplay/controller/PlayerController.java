@@ -19,7 +19,7 @@ public class PlayerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Player>> findAll(){
+    public ResponseEntity<List<Player>> findAll() {
         return ResponseEntity.ok(playerService.findAll());
     }
 
@@ -35,24 +35,24 @@ public class PlayerController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         playerService.deleteById(id);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping
-    public ResponseEntity<Player> save(@RequestBody Player player){
+    public ResponseEntity<Player> save(@RequestBody Player player) {
         return ResponseEntity.ok(playerService.save(player));
     }
 
     @PutMapping
-    public ResponseEntity<Player> update(@RequestBody Player player){
+    public ResponseEntity<Player> update(@RequestBody Player player) {
         return ResponseEntity.ok(playerService.update(player));
     }
 
     @GetMapping("/attack/{attackerId}/{defenderId}")
-    public ResponseEntity<Player> attackPlayer(@PathVariable Long attackerId, @PathVariable Long defenderId){
-        return ResponseEntity.ok(playerService.attackPlayer(attackerId,defenderId));
+    public ResponseEntity<Player> attackPlayer(@PathVariable Long attackerId, @PathVariable Long defenderId) {
+        return ResponseEntity.ok(playerService.attackPlayer(attackerId, defenderId));
     }
 
 

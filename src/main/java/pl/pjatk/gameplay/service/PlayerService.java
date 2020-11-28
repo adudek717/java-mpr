@@ -14,8 +14,9 @@ public class PlayerService {
     private PlayerRepository playerRepository;
     private DamageService damageService;
 
-    public PlayerService(PlayerRepository playerRepository) {
+    public PlayerService(PlayerRepository playerRepository, DamageService damageService) {
         this.playerRepository = playerRepository;
+        this.damageService = damageService;
     }
 
     public List<Player> findAll() {
