@@ -24,7 +24,11 @@ public class PlayerService {
     }
 
     public Optional<Player> findByID(Long playerId) {
-        return playerRepository.findById(playerId);
+        if (playerId == 10L) {
+            throw new RuntimeException();
+        } else {
+            return playerRepository.findById(playerId);
+        }
     }
 
     public Player save(Player player) {
@@ -37,6 +41,10 @@ public class PlayerService {
 
     public void deleteById(Long id) {
         playerRepository.deleteById(id);
+    }
+
+    public void deleteAll() {
+        playerRepository.deleteAll();
     }
 
     public Player update(Player player) {

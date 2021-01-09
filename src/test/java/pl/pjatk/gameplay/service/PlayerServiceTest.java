@@ -74,24 +74,38 @@ class PlayerServiceTest {
         assertThat(save.getNickname()).isEqualTo("Alex");
     }
 
+//    @Test
+//    void attackPlayer() {
+//        //given
+//        Player attacker = new Player(1L,"MeAttack",100,10);
+//        Player defender = new Player(2L,"MeDefend",100,10);
+//        Long attackerId = attacker.getId();
+//        Long defenderId = defender.getId();
+//
+//        when(damageService.attackPlayer(attacker, defender)).thenReturn(defender);
+//
+//        when(playerRepository.findById(attackerId)).thenReturn(Optional.of(attacker));
+//        when(playerRepository.findById(defenderId)).thenReturn(Optional.of(defender));
+//
+//        when(playerRepository.save(defender)).thenReturn(defender);
+//        //when
+//        Player defendingPlayer = playerService.attackPlayer(attackerId,defenderId);
+//        //then
+//        assertThat(defendingPlayer.getHealth()).isEqualTo(90);
+//    }
+
     @Test
-    void attackPlayer() {
-        //given
-        Player attacker = new Player(1L,"MeAttack",100,10);
-        Player defender = new Player(2L,"MeDefend",100,10);
-        Long attackerId = attacker.getId();
-        Long defenderId = defender.getId();
+    void shouldAttackPlayer() {
+        Player player1 = new Player(1L, "test 1", 1000, 50);
+        Player player2 = new Player(2L, "test 1", 1000, 50);
 
-        when(damageService.attackPlayer(attacker, defender)).thenReturn(defender);
+        when(playerRepository.findById(1L)).thenReturn(Optional.of(player1));
+        when(playerRepository.findById(2L)).thenReturn(Optional.of(player2));
+        when(playerRepository.save(player2)).thenReturn(player2);
+        when(damageService.attackPlayer(any(), any())).thenCallRealMethod();
 
-        when(playerRepository.findById(attackerId)).thenReturn(Optional.of(attacker));
-        when(playerRepository.findById(defenderId)).thenReturn(Optional.of(defender));
-
-        when(playerRepository.save(defender)).thenReturn(defender);
-        //when
-        Player defendingPlayer = playerService.attackPlayer(attackerId,defenderId);
-        //then
-        assertThat(defendingPlayer.getHealth()).isEqualTo(90);
+        Player attack1 = playerService.attackPlayer(1L, 2L);
+        assertThat(attack1.getHealth()).isEqualTo(950);
     }
     // powyższy test nie działa
 }

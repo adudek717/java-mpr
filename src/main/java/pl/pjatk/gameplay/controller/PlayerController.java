@@ -34,11 +34,15 @@ public class PlayerController {
         }
     }
 
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello() { return ResponseEntity.ok("Hello world"); }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteById(@PathVariable Long id) {
         playerService.deleteById(id);
         return ResponseEntity.ok().build();
     }
+
 
     @PostMapping
     public ResponseEntity<Player> save(@RequestBody Player player) {
