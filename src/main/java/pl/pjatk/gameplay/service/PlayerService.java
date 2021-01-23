@@ -1,6 +1,7 @@
 package pl.pjatk.gameplay.service;
 
 import org.springframework.stereotype.Service;
+import pl.pjatk.gameplay.model.Message;
 import pl.pjatk.gameplay.model.Player;
 import pl.pjatk.gameplay.repository.PlayerRepository;
 
@@ -31,7 +32,19 @@ public class PlayerService {
         }
     }
 
-    public Player save(Player player) {
+    public Optional<Player> findByName(String name) {
+        return playerRepository.getSomePlayerByName(name);
+    }
+
+    public Player save(Player player)
+    {
+    if (player.getNickname().contains("jakies przeklenstwo")) {
+        throw new RuntimeException();
+    }
+        player.getMessageList().add(new Message("Content 1", player));
+        player.getMessageList().add(new Message("Content 2", player));
+        player.getMessageList().add(new Message("Content 3", player));
+
         return playerRepository.save(player);
     }
 

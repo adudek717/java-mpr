@@ -3,6 +3,8 @@ package pl.pjatk.gameplay.service;
 import org.junit.jupiter.api.Test;
 import pl.pjatk.gameplay.model.Player;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DamageServiceTest {
@@ -12,7 +14,7 @@ public class DamageServiceTest {
     @Test
     void shouldHealPlayer() {
         //given
-        Player player = new Player("my nickname", 90, 10);
+        Player player = new Player("my nickname", 90, 10, List.of());
         //when
         damageService.heal(player);
         //then
@@ -22,7 +24,7 @@ public class DamageServiceTest {
     @Test
     void shouldPoisonPlayerAt5hp() {
         //given
-        Player player = new Player("name", 5, 10);
+        Player player = new Player("name", 5, 10, List.of());
         //when
         damageService.poisoned(player);
         //then
@@ -32,7 +34,7 @@ public class DamageServiceTest {
     @Test
     void shouldPoisonPlayerAt10hp() {
         //given
-        Player player = new Player("name", 10, 10);
+        Player player = new Player("name", 10, 10, List.of());
         //when
         damageService.poisoned(player);
         //then
@@ -42,8 +44,8 @@ public class DamageServiceTest {
     @Test
     void shouldTransferHealthFor100hp() {
         //given
-        Player donator = new Player("name", 100, 10);
-        Player receiver = new Player("name", 100, 10);
+        Player donator = new Player("name", 100, 10, List.of());
+        Player receiver = new Player("name", 100, 10, List.of());
         //when
         damageService.transferHealth(donator, receiver);
         //then
@@ -54,8 +56,8 @@ public class DamageServiceTest {
     @Test
     void shouldTransferHealthFor80hp() {
         //given
-        Player donator = new Player("name", 80, 10);
-        Player receiver = new Player("name", 80, 10);
+        Player donator = new Player("name", 80, 10, List.of());
+        Player receiver = new Player("name", 80, 10, List.of());
         //when
         damageService.transferHealth(donator, receiver);
         //then
@@ -66,7 +68,7 @@ public class DamageServiceTest {
     @Test
     void shouldSuperPotionHealFor50hpWhenPlayerHas60hp() {
         //given
-        Player player = new Player("name", 60, 10);
+        Player player = new Player("name", 60, 10, List.of());
         //when
         damageService.superPotion(player);
         //then
@@ -76,7 +78,7 @@ public class DamageServiceTest {
     @Test
     void shouldSuperPotionHealFor50hpWhenPlayerHas40hp() {
         //given
-        Player player = new Player("name", 40, 10);
+        Player player = new Player("name", 40, 10, List.of());
         //when
         damageService.superPotion(player);
         //then
@@ -86,7 +88,7 @@ public class DamageServiceTest {
     @Test
     void shouldIncreaseMaxHpTo120() {
         //given
-        Player player = new Player("name", 100, 10);
+        Player player = new Player("name", 100, 10, List.of());
         //when
         damageService.increaseMaxHP(player);
         //then

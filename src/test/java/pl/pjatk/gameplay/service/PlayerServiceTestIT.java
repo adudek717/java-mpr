@@ -34,20 +34,20 @@ public class PlayerServiceTestIT {
 
     @Test
     void shouldNotFindAllPlayers(){
-        playerService.save(new Player("nickname", 100, 10));
+        playerService.save(new Player("nickname", 100, 10, List.of()));
         List<Player> all = playerService.findAll();
         assertThat(all).isNotEmpty();
     }
 
     @Test
     void shouldSavePlayer(){
-        Player player = playerService.save(new Player("nickname", 100, 10));
+        Player player = playerService.save(new Player("nickname", 100, 10, List.of()));
         assertThat(player.getId()).isPositive();
     }
 
     @Test
     void shouldFindById(){
-        playerService.save(new Player("nickname", 100, 10));
+        playerService.save(new Player("nickname", 100, 10, List.of()));
         Optional<Player> all = playerService.findByID(1L);
         assertThat(all).isNotEmpty();
     }
@@ -60,8 +60,8 @@ public class PlayerServiceTestIT {
 
     @Test
     void shouldAttackPlayer() {
-        Player attacker = playerService.save(new Player("nickname", 100, 10));
-        Player defender = playerService.save(new Player("nickname", 100, 10));
+        Player attacker = playerService.save(new Player("nickname", 100, 10, List.of()));
+        Player defender = playerService.save(new Player("nickname", 100, 10, List.of()));
 
         playerService.attackPlayer(attacker.getId(), defender.getId());
 

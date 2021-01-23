@@ -1,5 +1,5 @@
 package pl.pjatk.gameplay.controller;
-
+// View
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.pjatk.gameplay.model.Player;
@@ -26,6 +26,17 @@ public class PlayerController {
     @GetMapping("/{id}")
     public ResponseEntity<Player> findById(@PathVariable Long id) {
         Optional<Player> optionalPlayer = playerService.findByID(id);
+
+        if (optionalPlayer.isPresent()) {
+            return ResponseEntity.ok(optionalPlayer.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/byName/{name}")
+    public ResponseEntity<Player> findByName(@PathVariable String name) {
+        Optional<Player> optionalPlayer = playerService.findByName(name);
 
         if (optionalPlayer.isPresent()) {
             return ResponseEntity.ok(optionalPlayer.get());
