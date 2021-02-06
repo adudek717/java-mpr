@@ -24,6 +24,12 @@ public class Movie {
         this.description = description;
         this.category = category;
     }
+    public Movie(Long id, String title, String description, Category category) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+    }
 
     public Long getId() {
         return id;
